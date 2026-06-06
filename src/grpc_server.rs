@@ -19,7 +19,6 @@ impl PaymentService for MyPaymentService {
         request: Request<PaymentRequest>,
     ) -> Result<Response<PaymentResponse>, Status> {
         println!("Received payment request: {:?}", request);
-
         Ok(Response::new(PaymentResponse { success: true }))
     }
 }
@@ -29,7 +28,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = "[::1]:50051".parse()?;
     let payment_service = MyPaymentService::default();
 
-    println!("Server listening on {}", addr);
+    println!("Payment server listening on {}", addr);
 
     Server::builder()
         .add_service(PaymentServiceServer::new(payment_service))
