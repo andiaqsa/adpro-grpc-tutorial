@@ -69,8 +69,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut inbound_stream = response.into_inner();
 
     // Menerima pesan balasan dari Server CS
-    while let Some(message) = inbound_stream.message().await? {
-        println!(">>> CS Virtual: {}", message.message);
+    while let Some(response) = inbound_stream.message().await? {
+        println!("Server says: {:?}", response);
     }
 
     Ok(())
